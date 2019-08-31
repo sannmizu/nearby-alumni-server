@@ -1,0 +1,2 @@
+2019-08-15 21:31:31'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 43:Unknown column \'NICK_NAME\' in \'field list\''
+2019-08-15 21:45:06'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 43:Unknown column \'NICKNAME\' in \'field list\''

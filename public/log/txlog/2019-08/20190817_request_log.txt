@@ -1,0 +1,124 @@
+2019-08-17 13:13:27'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 32:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \'13:13:27)\' at line 2
+#0 D:\\eclipse-workspace\\index\\module\\App\\AppServer.php(73): MysqlDB->query(\'REPLACE INTO LO...\')
+#1 D:\\eclipse-workspace\\index\\module\\App\\AppRestHandler.php(54): AppServer->login(\'{"type":"tel","...\')
+#2 D:\\eclipse-workspace\\index\\module\\App\\AppRestHandler.php(25): AppRestHandler->getLogin(\'A/zUU5NrC1GCvZT...\')
+#3 D:\\eclipse-workspace\\index\\RestController.php(16): AppRestHandler->execute()
+#4 {main}'
+2019-08-17 13:20:26'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 32:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \'13:20:26)\' at line 2
+#0 D:\\eclipse-workspace\\index\\module\\App\\AppServer.php(73): MysqlDB->query(\'REPLACE INTO LO...\')
+#1 D:\\eclipse-workspace\\index\\module\\App\\AppRestHandler.php(54): AppServer->login(\'{"type":"tel","...\')
+#2 D:\\eclipse-workspace\\index\\module\\App\\AppRestHandler.php(25): AppRestHandler->getLogin(\'fwGYKRY0tRorVVC...\')
+#3 D:\\eclipse-workspace\\index\\RestController.php(16): AppRestHandler->execute()
+#4 {main}'
+2019-08-17 14:07:07'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 32:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \'14:07:07)\' at line 2
+#0 D:\\eclipse-workspace\\index\\module\\App\\AppServer.php(73): MysqlDB->query(\'REPLACE INTO LO...\')
+#1 D:\\eclipse-workspace\\index\\module\\App\\AppRestHandler.php(54): AppServer->login(\'{"type":"tel","...\')
+#2 D:\\eclipse-workspace\\index\\module\\App\\AppRestHandler.php(25): AppRestHandler->getLogin(\'hCYM1StrwOS55ee...\')
+#3 D:\\eclipse-workspace\\index\\RestController.php(16): AppRestHandler->execute()
+#4 {main}'
+2019-08-17 14:09:53'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 32:Unknown column \'70MsWVPIsI\' in \'field list\'
+#0 D:\\eclipse-workspace\\index\\module\\App\\AppServer.php(74): MysqlDB->query(\'REPLACE INTO MI...\')
+#1 D:\\eclipse-workspace\\index\\module\\App\\AppRestHandler.php(54): AppServer->login(\'{"type":"tel","...\')
+#2 D:\\eclipse-workspace\\index\\module\\App\\AppRestHandler.php(25): AppRestHandler->getLogin(\'fm0eMsZuyZQEqw2...\')
+#3 D:\\eclipse-workspace\\index\\RestController.php(16): AppRestHandler->execute()
+#4 {main}'
+2019-08-17 14:11:49'D:\\eclipse-workspace\\index\\module\\Utils\\BaseServer.php 29:logToken error
+#0 D:\\eclipse-workspace\\index\\module\\Utils\\BaseServer.php(15): BaseSever->check_logToken(\'44f91c12f30f15b...\')
+#1 D:\\eclipse-workspace\\index\\module\\App\\AppServer.php(8): BaseSever->__construct(\'44f91c12f30f15b...\', NULL)
+#2 D:\\eclipse-workspace\\index\\module\\App\\AppRestHandler.php(65): AppServer->__construct(\'44f91c12f30f15b...\')
+#3 D:\\eclipse-workspace\\index\\module\\App\\AppRestHandler.php(35): AppRestHandler->getConnect(\'bb6iA6mBG/klRke...\', \'44f91c12f30f15b...\')
+#4 D:\\eclipse-workspace\\index\\RestController.php(16): AppRestHandler->execute()
+#5 {main}'
+2019-08-17 16:04:35'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 43:Unknown column \'ASE_IV\' in \'field list\'
+#0 D:\\eclipse-workspace\\index\\module\\Utils\\BaseServer.php(43): MysqlDB->prepare(\'SELECT EXPIRE_T...\')
+#1 D:\\eclipse-workspace\\index\\module\\Utils\\BaseServer.php(18): BaseSever->check_connToken(\'29c285064ae2dda...\')
+#2 D:\\eclipse-workspace\\index\\module\\Chat\\ChatServer.php(12): BaseSever->__construct(\'603f53ca9869e5f...\', \'29c285064ae2dda...\')
+#3 D:\\eclipse-workspace\\index\\module\\Chat\\ChatRestHandler.php(29): ChatServer->__construct(\'603f53ca9869e5f...\', \'29c285064ae2dda...\')
+#4 D:\\eclipse-workspace\\index\\module\\Chat\\ChatRestHandler.php(19): ChatRestHandler->sendMessage(\'29c285064ae2dda...\', \'603f53ca9869e5f...\', \'10003\', \'2I7LkLnwZRZeF3v...\')
+#5 D:\\eclipse-workspace\\index\\RestController.php(31): ChatRestHandler->execute()
+#6 {main}'
+2019-08-17 16:09:49'D:\\eclipse-workspace\\index\\module\\Utils\\BaseServer.php 48:connToken error
+#0 D:\\eclipse-workspace\\index\\module\\Utils\\BaseServer.php(18): BaseSever->check_connToken(\'29c285064ae2dda...\')
+#1 D:\\eclipse-workspace\\index\\module\\Chat\\ChatServer.php(12): BaseSever->__construct(\'603f53ca9869e5f...\', \'29c285064ae2dda...\')
+#2 D:\\eclipse-workspace\\index\\module\\Chat\\ChatRestHandler.php(29): ChatServer->__construct(\'603f53ca9869e5f...\', \'29c285064ae2dda...\')
+#3 D:\\eclipse-workspace\\index\\module\\Chat\\ChatRestHandler.php(19): ChatRestHandler->sendMessage(\'29c285064ae2dda...\', \'603f53ca9869e5f...\', \'10003\', \'fwGYKRY0tRorVVC...\')
+#4 D:\\eclipse-workspace\\index\\RestController.php(31): ChatRestHandler->execute()
+#5 {main}'
+2019-08-17 20:13:49'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 50:
+#0 D:\\eclipse-workspace\\index\\module\\App\\AppServer.php(179): MysqlDB->bind_param(\'ssss\', 10003, \'112.924389\', \'28.190092\', \'wt023ev50yp\')
+#1 D:\\eclipse-workspace\\index\\module\\App\\AppRestHandler.php(72): AppServer->setLocate(\'28.190092\', \'112.924389\')
+#2 D:\\eclipse-workspace\\index\\module\\App\\AppRestHandler.php(40): AppRestHandler->setLocate(\'cdaa843fc9d36d3...\', \'28.190092\', \'112.924389\')
+#3 D:\\eclipse-workspace\\index\\RestController.php(16): AppRestHandler->execute()
+#4 {main}'
+2019-08-17 20:58:45'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 32:Unknown column \'NICKNAME\' in \'field list\'
+#0 D:\\eclipse-workspace\\index\\module\\Account\\UserServer.php(25): MysqlDB->query(\'SELECT NICKNAME...\')
+#1 D:\\eclipse-workspace\\index\\module\\Account\\AccountRestHandler.php(117): UserServer->friendList()
+#2 D:\\eclipse-workspace\\index\\module\\Account\\AccountRestHandler.php(37): AccountRestHandler->getFriendsList(\'cdaa843fc9d36d3...\')
+#3 D:\\eclipse-workspace\\index\\RestController.php(21): AccountRestHandler->execute()
+#4 {main}'
+2019-08-17 21:26:02'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 43:Unknown column \'POSTING_ID\' in \'field list\'
+#0 D:\\eclipse-workspace\\index\\module\\Post\\PostServer.php(162): MysqlDB->prepare(\'INSERT INTO POS...\')
+#1 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(152): PostServer->sendPost(\'{"post":\\r\\n   {"...\')
+#2 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(39): PostRestHandler->sendPost(\'a9edcf91522c4de...\', \'cdaa843fc9d36d3...\', \'MErmI0OeYwvEj5+...\')
+#3 D:\\eclipse-workspace\\index\\RestController.php(26): PostRestHandler->execute()
+#4 {main}'
+2019-08-17 21:26:54'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 43:Table \'test.postings\' doesn\'t exist
+#0 D:\\eclipse-workspace\\index\\module\\Post\\PostServer.php(174): MysqlDB->prepare(\'UPDATE POSTINGS...\')
+#1 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(152): PostServer->sendPost(\'{"post":\\r\\n   {"...\')
+#2 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(39): PostRestHandler->sendPost(\'a9edcf91522c4de...\', \'cdaa843fc9d36d3...\', \'MErmI0OeYwvEj5+...\')
+#3 D:\\eclipse-workspace\\index\\RestController.php(26): PostRestHandler->execute()
+#4 {main}'
+2019-08-17 21:28:03'D:\\eclipse-workspace\\index\\module\\Post\\PostServer.php 598:数据传输格式错误
+#0 D:\\eclipse-workspace\\index\\module\\Post\\PostServer.php(175): PostServer->saveMedia(Object(stdClass), 10003, \'2\')
+#1 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(152): PostServer->sendPost(\'{"post":\\r\\n   {"...\')
+#2 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(39): PostRestHandler->sendPost(\'a9edcf91522c4de...\', \'cdaa843fc9d36d3...\', \'MErmI0OeYwvEj5+...\')
+#3 D:\\eclipse-workspace\\index\\RestController.php(26): PostRestHandler->execute()
+#4 {main}'
+2019-08-17 21:55:32'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 32:Cannot add or update a child row: a foreign key constraint fails (`test`.`comments`, CONSTRAINT `fk_comments_comments_1` FOREIGN KEY (`repost`) REFERENCES `comments` (`comment_id`) ON DELETE CASCADE ON UPDATE CASCADE)
+#0 D:\\eclipse-workspace\\index\\module\\Post\\PostServer.php(188): MysqlDB->query(\'INSERT INTO COM...\')
+#1 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(152): PostServer->sendPost(\'{"post":\\r\\n   {"...\')
+#2 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(39): PostRestHandler->sendPost(\'a9edcf91522c4de...\', \'cdaa843fc9d36d3...\', \'MErmI0OeYwvEj5+...\')
+#3 D:\\eclipse-workspace\\index\\RestController.php(26): PostRestHandler->execute()
+#4 {main}'
+2019-08-17 21:56:01'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 32:Cannot add or update a child row: a foreign key constraint fails (`test`.`comments`, CONSTRAINT `fk_comments_comments_1` FOREIGN KEY (`repost`) REFERENCES `comments` (`comment_id`) ON DELETE CASCADE ON UPDATE CASCADE)
+#0 D:\\eclipse-workspace\\index\\module\\Post\\PostServer.php(188): MysqlDB->query(\'INSERT INTO COM...\')
+#1 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(152): PostServer->sendPost(\'{"post":\\r\\n   {"...\')
+#2 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(39): PostRestHandler->sendPost(\'a9edcf91522c4de...\', \'cdaa843fc9d36d3...\', \'MErmI0OeYwvEj5+...\')
+#3 D:\\eclipse-workspace\\index\\RestController.php(26): PostRestHandler->execute()
+#4 {main}'
+2019-08-17 21:56:23'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 32:Cannot add or update a child row: a foreign key constraint fails (`test`.`comments`, CONSTRAINT `fk_comments_comments_1` FOREIGN KEY (`repost`) REFERENCES `comments` (`comment_id`) ON DELETE CASCADE ON UPDATE CASCADE)
+#0 D:\\eclipse-workspace\\index\\module\\Post\\PostServer.php(188): MysqlDB->query(\'INSERT INTO COM...\')
+#1 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(152): PostServer->sendPost(\'{"post":\\r\\n   {"...\')
+#2 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(39): PostRestHandler->sendPost(\'a9edcf91522c4de...\', \'cdaa843fc9d36d3...\', \'MErmI0OeYwvEj5+...\')
+#3 D:\\eclipse-workspace\\index\\RestController.php(26): PostRestHandler->execute()
+#4 {main}'
+2019-08-17 21:59:57'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 32:Field \'time\' doesn\'t have a default value
+#0 D:\\eclipse-workspace\\index\\module\\Post\\PostServer.php(206): MysqlDB->query(\'INSERT INTO USE...\')
+#1 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(152): PostServer->sendPost(\'{"post":\\r\\n   {"...\')
+#2 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(39): PostRestHandler->sendPost(\'a9edcf91522c4de...\', \'cdaa843fc9d36d3...\', \'MErmI0OeYwvEj5+...\')
+#3 D:\\eclipse-workspace\\index\\RestController.php(26): PostRestHandler->execute()
+#4 {main}'
+2019-08-17 22:01:15'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 32:Duplicate entry \'10003-13\' for key \'PRIMARY\'
+#0 D:\\eclipse-workspace\\index\\module\\Post\\PostServer.php(206): MysqlDB->query(\'INSERT INTO USE...\')
+#1 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(152): PostServer->sendPost(\'{"post":\\r\\n   {"...\')
+#2 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(39): PostRestHandler->sendPost(\'a9edcf91522c4de...\', \'cdaa843fc9d36d3...\', \'MErmI0OeYwvEj5+...\')
+#3 D:\\eclipse-workspace\\index\\RestController.php(26): PostRestHandler->execute()
+#4 {main}'
+2019-08-17 22:07:31'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 32:Table \'test.user_post\' doesn\'t exist
+#0 D:\\eclipse-workspace\\index\\module\\Post\\PostServer.php(18): MysqlDB->query(\'SELECT POST_ID ...\')
+#1 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(146): PostServer->getAllPost(\'10003\')
+#2 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(25): PostRestHandler->getAllPost(\'10003\')
+#3 D:\\eclipse-workspace\\index\\RestController.php(26): PostRestHandler->execute()
+#4 {main}'
+2019-08-17 22:12:24'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 32:BIGINT UNSIGNED value is out of range in \'(`test`.`posts`.`num_likes` - 1)\'
+#0 D:\\eclipse-workspace\\index\\module\\Post\\PostServer.php(253): MysqlDB->query(\'UPDATE POSTS SE...\')
+#1 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(164): PostServer->like(\'blog\', \'14\', \'- 1\')
+#2 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(64): PostRestHandler->likes(\'14\', \'blog\', \'- 1\')
+#3 D:\\eclipse-workspace\\index\\RestController.php(26): PostRestHandler->execute()
+#4 {main}'
+2019-08-17 22:19:42'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 32:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \'\' at line 1
+#0 D:\\eclipse-workspace\\index\\module\\Post\\PostServer.php(361): MysqlDB->query(\'SELECT POST_ID ...\')
+#1 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(202): PostServer->getComments(\'\', \'\', true)
+#2 D:\\eclipse-workspace\\index\\module\\Post\\PostRestHandler.php(86): PostRestHandler->getComments(\'\', \'\', true)
+#3 D:\\eclipse-workspace\\index\\RestController.php(26): PostRestHandler->execute()
+#4 {main}'

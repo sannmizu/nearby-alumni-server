@@ -1,0 +1,6 @@
+2019-08-22 13:06:28'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 60:Duplicate entry \'13098830176\' for key \'users_account_tel\'
+#0 D:\\eclipse-workspace\\index\\module\\Account\\AccountSever.php(76): MysqlDB->execute()
+#1 D:\\eclipse-workspace\\index\\module\\Account\\AccountRestHandler.php(116): AccountServer->register(\'{"type":"tel","...\')
+#2 D:\\eclipse-workspace\\index\\module\\Account\\AccountRestHandler.php(28): AccountRestHandler->newAccount(\'DEgAJTU53fCaEtG...\')
+#3 D:\\eclipse-workspace\\index\\RestController.php(21): AccountRestHandler->execute()
+#4 {main}'

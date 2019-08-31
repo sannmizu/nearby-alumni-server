@@ -1,0 +1,12 @@
+2019-08-23 00:22:01'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 32:Cannot add or update a child row: a foreign key constraint fails (`test`.`user_friends`, CONSTRAINT `fk_user_friends_users_root_2` FOREIGN KEY (`friend_id`) REFERENCES `users_root` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE)
+#0 D:\\eclipse-workspace\\index\\module\\Account\\UserServer.php(49): MysqlDB->query(\'REPLACE INTO US...\')
+#1 D:\\eclipse-workspace\\index\\module\\Account\\AccountRestHandler.php(128): UserServer->friend(\'10003\')
+#2 D:\\eclipse-workspace\\index\\module\\Account\\AccountRestHandler.php(41): AccountRestHandler->addFriend(\'e6f8641c4d331a1...\', \'10003\')
+#3 D:\\eclipse-workspace\\index\\RestController.php(21): AccountRestHandler->execute()
+#4 {main}'
+2019-08-23 00:27:46'D:\\eclipse-workspace\\index\\module\\Utils\\MysqlDB.php 32:Cannot add or update a child row: a foreign key constraint fails (`test`.`user_friends`, CONSTRAINT `fk_user_friends_users_root_2` FOREIGN KEY (`friend_id`) REFERENCES `users_root` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE)
+#0 D:\\eclipse-workspace\\index\\module\\Account\\UserServer.php(49): MysqlDB->query(\'REPLACE INTO US...\')
+#1 D:\\eclipse-workspace\\index\\module\\Account\\AccountRestHandler.php(142): UserServer->friend(\'10003\')
+#2 D:\\eclipse-workspace\\index\\module\\Account\\AccountRestHandler.php(55): AccountRestHandler->addFriend(\'e6f8641c4d331a1...\', \'10003\')
+#3 D:\\eclipse-workspace\\index\\RestController.php(21): AccountRestHandler->execute()
+#4 {main}'

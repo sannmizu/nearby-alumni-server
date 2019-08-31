@@ -1,0 +1,4 @@
+2019-08-16 21:02:52'D:\\eclipse-workspace\\index\\module\\Utils\\SimpleRest.php 17:未接收到数据
+#0 D:\\eclipse-workspace\\index\\module\\Account\\AccountRestHandler.php(71): SimpleRest->assert(\'name\', \'\', \'1}\')
+#1 D:\\eclipse-workspace\\index\\RestController.php(21): AccountRestHandler->execute()
+#2 {main}'

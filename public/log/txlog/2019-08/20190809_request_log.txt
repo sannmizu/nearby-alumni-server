@@ -1,0 +1,31 @@
+2019-08-09 16:53:46'D:\\eclipse-workspace\\index\\server\\MysqlDB.php 47:'
+2019-08-09 16:55:27'D:\\eclipse-workspace\\index\\server\\MysqlDB.php 57:Incorrect integer value: \'\' for column \'upid\' at row 1'
+2019-08-09 16:57:34'D:\\eclipse-workspace\\index\\server\\MysqlDB.php 57:Incorrect integer value: \'NULL\' for column \'upid\' at row 1'
+2019-08-09 16:59:02'D:\\eclipse-workspace\\index\\server\\MysqlDB.php 57:Incorrect integer value: \'NULL\' for column \'upid\' at row 1'
+2019-08-09 16:59:26'D:\\eclipse-workspace\\index\\server\\MysqlDB.php 29:Column count doesn\'t match value count at row 1'
+2019-08-09 17:05:38'D:\\eclipse-workspace\\index\\server\\MysqlDB.php 29:Column count doesn\'t match value count at row 1Array'
+2019-08-09 17:05:57'D:\\eclipse-workspace\\index\\server\\MysqlDB.php 29:Column count doesn\'t match value count at row 1#0 D:\\eclipse-workspace\\index\\server\\Post.php(70): MysqlDB->query(\'INSERT INTO COM...\')
+#1 D:\\eclipse-workspace\\index\\PostRestHandler.php(24): Post->sendPost(\'       <post us...\')
+#2 D:\\eclipse-workspace\\index\\RestController.php(25): PostRestHandler->execute()
+#3 {main}'
+2019-08-09 17:11:07'D:\\eclipse-workspace\\index\\server\\MysqlDB.php 33:Column count doesn\'t match value count at row 1
+#0 D:\\eclipse-workspace\\index\\server\\Post.php(70): MysqlDB->query(\'INSERT INTO COM...\')
+#1 D:\\eclipse-workspace\\index\\PostRestHandler.php(24): Post->sendPost(\'       <post us...\')
+#2 D:\\eclipse-workspace\\index\\RestController.php(25): PostRestHandler->execute()
+#3 {main}'
+2019-08-09 21:04:20'D:\\eclipse-workspace\\index\\server\\MysqlDB.php 41:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \'(POSTING_ID, UPID, TIME, TITLE, CONTENT, MEDIA,
+                               \' at line 1
+#0 D:\\eclipse-workspace\\index\\server\\Post.php(103): MysqlDB->prepare(\'SELECT * FROM P...\')
+#1 D:\\eclipse-workspace\\index\\PostRestHandler.php(32): Post->getPost(\'1\')
+#2 D:\\eclipse-workspace\\index\\RestController.php(24): PostRestHandler->execute()
+#3 {main}'
+2019-08-09 21:06:01'D:\\eclipse-workspace\\index\\server\\MysqlDB.php 41:Operand should contain 1 column(s)
+#0 D:\\eclipse-workspace\\index\\server\\Post.php(103): MysqlDB->prepare(\'SELECT (POSTING...\')
+#1 D:\\eclipse-workspace\\index\\PostRestHandler.php(32): Post->getPost(\'1\')
+#2 D:\\eclipse-workspace\\index\\RestController.php(24): PostRestHandler->execute()
+#3 {main}'
+2019-08-09 21:13:46'D:\\eclipse-workspace\\index\\server\\MysqlDB.php 30:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near \'?\' at line 1
+#0 D:\\eclipse-workspace\\index\\server\\Post.php(141): MysqlDB->query(\'DELETE FROM POS...\')
+#1 D:\\eclipse-workspace\\index\\PostRestHandler.php(38): Post->deletePost(\'1\')
+#2 D:\\eclipse-workspace\\index\\RestController.php(24): PostRestHandler->execute()
+#3 {main}'
