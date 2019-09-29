@@ -18,9 +18,8 @@ class AccountRestHandler extends SimpleRest {
             $type = isset($_GET['type']) ? $_GET['type'] : "";
             $standard = isset($_GET['standard']) ? $_GET['standard'] : "";
             $limit = isset($_GET['limit']) ? $_GET['limit'] : 1;
-            $newInfo = isset($_GET['newInfo']) ? $_GET['newInfo'] : "";
+            $newInfo = isset($_POST['newInfo']) ? $_POST['newInfo'] : "";
             $method = $_SERVER['REQUEST_METHOD'];
-            
             if($objid != "") {
                 self::checkUserExist($objid);
             }
@@ -29,6 +28,9 @@ class AccountRestHandler extends SimpleRest {
                     if($method == "POST") {
                         self::assert(array("value" => $value));
                         $this->newAccount($value);
+                    } else if($method == "PUT") {
+                        self::assert(array("value" => $value));
+                        $this->updateAccount($value);
                     } else {
                         throw new MyException("请求不被解析", 404);
                     }
@@ -50,6 +52,14 @@ class AccountRestHandler extends SimpleRest {
                         default:
                             throw new MyException("请求不被解析", 404);
                             break;
+                    }
+                    break;
+                case "requests":
+                    if($method == "GET") {
+                        self::urlAssert(false, $objid);
+                        $this->getFriendRequest($logToken);
+                    } else {
+                        throw new MyException("请求不被解析", 404);
                     }
                     break;
                 case "follows":
@@ -119,10 +129,21 @@ class AccountRestHandler extends SimpleRest {
         $response = $server->register(rsa_decrypt($data));
         echo $response;
     }
+    private function updateAccount($data) {
+        $server = new AccountServer();
+        $response = $server->updatePassword(rsa_decrypt($data));
+        echo $response;
+    }
     private function getFriendsList($logToken) {
         self::assert(array("logToken" => $logToken));
         $server = new UserServer($logToken);
         $response = $server->friendList();
+        echo $response;
+    }
+    private function getFriendRequest($logToken) {
+        self::assert(array("logToken" => $logToken));
+        $server = new UserServer($logToken);
+        $response = $server->requests();
         echo $response;
     }
     private function addFriend($logToken, $objid) {

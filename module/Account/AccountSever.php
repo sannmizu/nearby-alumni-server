@@ -14,9 +14,12 @@ class AccountServer extends BaseSever {
      * json
      * {"type":"tel","timestamp":"123456789","data":{"account":"**","nickname":"qwe","pwd":"123456","sign":"md5"}}
      *                                                              //sign=MD5($timestamp.$account.$nickname.$pwd)
+     * @http_return
+     * {"userId"}
      */
     public function register(string $data) {
         if(!$json = json_decode($data)) throw new MyException("json格式错误", 10017);
+        $json = new JsonElement($json);
         
         if(!$type = $json->type) throw new MyException("缺少参数type", 10016);
         if(!$timestamp = $json->timestamp) throw new MyException("缺少参数timestamp", 10016);
@@ -88,6 +91,69 @@ class AccountServer extends BaseSever {
             //提交
             $mysqldb->commit();
             $this->response = OkJson('{"userId":'.$user_id.'}');
+        } catch (MyException $e) {
+            $mysqldb->rollback();
+            throw $e;
+        } finally {
+            $mysqldb->close();
+        }
+        return $this->response;
+    }
+    /**
+     * @param
+     * date:
+     * {"type":"tel","timestamp":"123456789","data":{"account":"**","pwd":"123456","sign":"md5"}}
+     *                                                           //sign=MD5($timestamp.$account.$pwd)
+     * @http_return
+     * 默认
+     */
+    public function updatePassword($data) {
+        $data = str_replace("\n", "\\n", $data);
+        if(!$json = json_decode($data)) throw new MyException("json格式错误", 10017);
+        $json = new JsonElement($json);
+        
+        if(!$type = $json->type) throw new MyException("缺少参数type", 10016);
+        if(!$timestamp = $json->timestamp) throw new MyException("缺少参数timestamp", 10016);
+        if(!$account = $json->data->account) throw new MyException("缺少参数account", 10016);
+        if(!$pwd = $json->data->pwd) throw new MyException("缺少参数pwd", 10016);
+        if(!$sign = $json->data->sign) throw new MyException("缺少参数sign", 10016);
+        
+        if(strlen($pwd) > 20) throw new MyException("password长度应小于等于20", 10017);
+        //验证签名和时间戳有效性
+        if(!self::check_timestamp($timestamp)){
+            throw new MyException("注册请求超过有效期", 10037);
+        }
+        if(!self::check_sign($timestamp.$account.$pwd, $sign)){
+            throw new MyException("数据校验错", 10012);
+        }
+        
+        $search_str = "";
+        switch ($type) {
+            case "tel":
+                if(strlen($account) > 11) throw new MyException("tel长度应小于等于11", 10017);
+                $search_str = "TEL";
+                break;
+            case "email":
+                if(strlen($account) > 30) throw new MyException("email长度应小于等于30", 10017);
+                $search_str = "EMAIL";
+                break;
+            default:
+                throw new MyException("type取值错误，请取tel/email", 10008);
+                break;
+        }
+        //数据库操作
+        $mysqldb = new MysqlDB();
+        try{
+            $mysqldb->autocommit(false);
+            //获取新盐值
+            $salt = getRandomStr(5).time().getRandomStr(5);
+            //更新密码和盐值
+            $mysqldb->prepare("UPDATE USERS_ACCOUNT SET PASSWORD = ?,SALT = ? WHERE $search_str = ?");
+            $mysqldb->bind_param("ss", md5($pwd.$salt), $salt);
+            $mysqldb->execute();
+            //提交
+            $mysqldb->commit();
+            $this->response = OkJson("");
         } catch (MyException $e) {
             $mysqldb->rollback();
             throw $e;
@@ -199,6 +265,7 @@ class AccountServer extends BaseSever {
                 break;
             case "surround":
                 if(!$json = json_decode($search_string)) throw new MyException("json格式错误", 10017);
+                $json = new JsonElement($json);
                 if(!$longitude = $json->longitude) throw new MyException("缺少参数longitude", 10016);
                 if(!$latitude = $json->latitude) throw new MyException("缺少参数latitude", 10016);
                 
@@ -259,19 +326,17 @@ class AccountServer extends BaseSever {
         $mysqldb = new MysqlDB();
         try {
             $mysqldb->autocommit(false);
+            $data = str_replace("\n", "\\n", $data);
             if(!$json = json_decode($data, true)) throw new MyException("json格式错误", 10017);
+            if(!isset($json['info'])) throw new MyException("缺少参数info", 10016);
             foreach($json['info'] as $k => $v) {
-                $selected = checkUserInfo($k);
+                $selected = checkUserInfo($k, $v);
                 $mysqldb->prepare("UPDATE USERS_DATA SET $selected = ? WHERE USER_ID = '$this->user_id'");
                 $mysqldb->bind_param("s", $v);
                 $mysqldb->execute();
             }
             $mysqldb->commit();
-            if($mysqldb->affected_rows != 0) {
-                $this->response = OkJson("");
-            } else {
-                throw new MyException("未找到用户", MyException::SERVER_ERROR);
-            }
+            $this->response = OkJson("");
         } catch (MyException $e) {
             $mysqldb->rollback();
             throw $e;

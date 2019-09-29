@@ -135,7 +135,7 @@ class PostServer extends BaseSever {
      * {"post":
      *    {"title":"", "content":"", "repost":"",
      *     "location":{"areaid":"", "latitude":"", "longitude":""},
-     *     "mentions":[{"id":""}, {"id":""}, ...],
+     *     "mentions":[{"name":""}, {"name":""}, ...],
      *     "extra":{"extra.xxx":"png", "extra.xxx":"", ...}
      *    }
      * }
@@ -143,7 +143,9 @@ class PostServer extends BaseSever {
      * {"postid":"'.$post_id.'", "commentid":"'.$comment_id.'"}
      */
     public function sendPost($data) {
+        $data = str_replace("\n", "\\n", $data);
         if(!$json = json_decode($data)) throw new MyException("json格式错误", 10017);
+        $json = new JsonElement($json);
         //初始化数据
         $user_id = $this->user_id;
         $repost = $json->post->repost;
@@ -163,7 +165,8 @@ class PostServer extends BaseSever {
         $time = date("Y-m-d H:i:s");
         $mentions = array();
         foreach ($json->post->mentions as $mention) {
-            array_push($mentions, $mention->id);
+            if(!isset($mention->name)) throw new MyException("mantions中缺少参数name", 10016);
+            array_push($mentions, $mention->name);
         }
         
         $mysqldb = new MysqlDB();
@@ -185,7 +188,7 @@ class PostServer extends BaseSever {
             $post_id = $row["LAST_INSERT_ID()"];
             //插入媒体数据地址
             $mysqldb->prepare("UPDATE POSTS SET MEDIA = ? WHERE POST_ID = $post_id");
-            $mediaPath = $_SERVER['DOCUMENT_ROOT']."/public/medias/".$user_id."/posts/".$post_id."/";
+            $mediaPath = "/api/v1/public/medias/".$user_id."/posts/".$post_id."/";
             $mediaJson = saveMedia($medias, $mediaPath);
             $mysqldb->bind_param("s", $mediaJson);
             $mysqldb->execute();
@@ -209,9 +212,17 @@ class PostServer extends BaseSever {
             $row = $result->fetch_assoc();
             $comment_id = $row["LAST_INSERT_ID()"];
             //添加@人员
-            foreach($mentions as $to_id){
-                $mysqldb->query("INSERT INTO MENTIONS(ID, FROM_ID, TO_ID, COMMENT_ID)
+            foreach($mentions as $to_name){
+                $mysqldb->prepare("SELECT USER_ID FROM USERS_DATA WHERE NICKNAME = ?");
+                $mysqldb->bind_param("s", $to_name);
+                $mysqldb->execute();
+                $result = $mysqldb->get_result();
+                while($row = $result->fetch_assoc()) {
+                    $to_id = $row['USER_ID'];
+                    $mysqldb->query("INSERT INTO MENTIONS(ID, FROM_ID, TO_ID, COMMENT_ID)
                              VALUES (NULL, '$user_id', '$to_id', '$comment_id')");
+                }
+                //TODO:通知
             }
             //建立联系
             $mysqldb->query("INSERT INTO POST_COMMENT(POST_ID, COMMENT_ID)
@@ -418,17 +429,20 @@ class PostServer extends BaseSever {
     /**
      * @param int $repost_id
      * @param string $value
-     * {"comment":{"content":"", "mentions":[{"id":""}, {"id":""}]}}
+     * {"comment":{"content":"", "mentions":[{"name":""}, {"name":""}]}}
      * @throws MyException
      * @return string|mixed
      * {"comment":{"id":""}}
      */
-    public function sendComment($repost_id, $value) {
-        if(!$json = json_decode($value)) throw new MyException("json格式错误", 10017);
+    public function sendComment($repost_id, $data) {
+        $data = str_replace("\n", "\\n", $data);
+        if(!$json = json_decode($data)) throw new MyException("json格式错误", 10017);
+        $json = new JsonElement($json);
         if(!$content = $json->comment->content) throw new MyException("缺少参数content", 10016);
         $mentions = array();
         foreach ($json->comment->mentions as $mention) {
-            array_push($mentions, $mention->id);
+            if(!isset($mention->name)) throw new MyException("mantions中缺少参数name", 10016);
+            array_push($mentions, $mention->name);
         }
         $mysqldb = new MysqlDB();
         try {
@@ -441,9 +455,17 @@ class PostServer extends BaseSever {
             $row = $result->fetch_assoc();
             $comment_id = $row["LAST_INSERT_ID()"];
             //添加@人员
-            foreach($mentions as $to_id){
-                $mysqldb->query("INSERT INTO MENTIONS(ID, FROM_ID, TO_ID, COMMENT_ID)
+            foreach($mentions as $to_name){
+                $mysqldb->prepare("SELECT USER_ID FROM USERS_DATA WHERE NICKNAME = ?");
+                $mysqldb->bind_param("s", $to_name);
+                $mysqldb->execute();
+                $result = $mysqldb->get_result();
+                while($row = $result->fetch_assoc()) {
+                    $to_id = $row['USER_ID'];
+                    $mysqldb->query("INSERT INTO MENTIONS(ID, FROM_ID, TO_ID, COMMENT_ID)
                              VALUES (NULL, '$this->user_id', '$to_id', '$comment_id')");
+                }
+                //TODO:通知
             }
             $mysqldb->commit();
             $this->response = OkJson('{"comment":{"id":"'.$comment_id.'"}}');

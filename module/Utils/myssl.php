@@ -1,7 +1,7 @@
 <?php
 define("AES_TYPE", "aes-128-cbc");
-define("privateKeyFilePath", "D:/eclipse-workspace/index/public/server_rsa_private_key.pem");
-define("publicKeyFilePath", "D:/eclipse-workspace/index/public/server_rsa_public_key.pem");
+define("privateKeyFilePath", $_SERVER['DOCUMENT_ROOT']."/api/v1/public/server_rsa_private_key.pem");
+define("publicKeyFilePath", $_SERVER['DOCUMENT_ROOT']."/api/v1/public/server_rsa_public_key.pem");
 {
     extension_loaded('openssl') or die('php需要openssl扩展支持');
     file_exists(privateKeyFilePath) or die('文件路径不正确');

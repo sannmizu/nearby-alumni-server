@@ -2,8 +2,8 @@
 
 class MysqlDB {
     const servername = "localhost";
-    const username = "root";
-    const password = "QWEasd123!@#";
+    const username = "sannmizu";
+    const password = "sannmizu";
     const dbname = "test";
     private $stmt;
     private $conn;

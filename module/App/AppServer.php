@@ -19,7 +19,10 @@ class AppServer extends BaseSever {
     public function login($data)
     {
         $repire_interval = 7*24*60*60;
+        $data = str_replace("\n", "\\n", $data);
         if(!$json = json_decode($data)) throw new MyException("json格式错误", 10017);
+        $json = new JsonElement($json);
+        
         if(!$type = $json->type) throw new MyException("缺少参数type", 10016);
         if(!$timestamp = $json->timestamp) throw new MyException("缺少参数timestamp", 10016);
         if(!$account = $json->data->account) throw new MyException("缺少参数account", 10016);
@@ -99,7 +102,10 @@ class AppServer extends BaseSever {
      *                  //MD5(timestamp+id)
      */
     public function logout($data) {
+        $data = str_replace("\n", "\\n", $data);
         if(!$json = json_decode($data)) throw new MyException("json格式错误", 10017);
+        $json = new JsonElement($json);
+        
         if(!$timestamp = $json->timestamp) throw new MyException("缺少参数timestamp", 10016);
         if(!$user_id = $json->userId) throw new MyException("缺少参数userid", 10016);
         if(!$sign = $json->sign) throw new MyException("缺少参数sign", 10016);
@@ -135,7 +141,10 @@ class AppServer extends BaseSever {
      */
     public function connect($data) {
         $repire_interval = 7*24*60*60;
+        $data = str_replace("\n", "\\n", $data);
         if(!$json = json_decode($data)) throw new MyException("json格式错误", 10017);
+        $json = new JsonElement($json);
+        
         if(!$info = $json->info) throw new MyException("缺少参数info", 10016);
         if(!$client_key = $json->key) throw new MyException("缺少参数key", 10016);
         if(!$client_iv = $json->iv) throw new MyException("缺少参数iv", 10016);

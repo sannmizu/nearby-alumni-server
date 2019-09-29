@@ -84,12 +84,26 @@ function checkUserInfo($key, $data = null) {
         "constellation" => 4,
         "career" => 20
     );
+    $infoType = array(
+        "userId" => "int",
+        "name" => "string",
+        "sign" => "string",
+        "sex" => "string",
+        "icon" => null,
+        "areaId" => "int",
+        "age" => "int",
+        "constellation" => "string",
+        "career" => "string"
+    );
     if(isset($userInfo[$key])) {
         $queryCh = $userInfo[$key];
         if($data != null) {
             if($queryCh == "ICON") {
                 return $queryCh;
             } else {
+                if($infoType[$key] == "int" && !is_numeric($data)) {
+                    throw new MyException("参数".$key."类型应该是".$infoType[$key], 10017);
+                }
                 if(utf8_strlen($data) <= $lengthLimit[$key]) {
                     return $queryCh;
                 } else {
@@ -141,9 +155,9 @@ function saveMedia($medias, string $rootPath) {
     if($medias == null) {
         return "{}";
     }
-    $i = 1;
-    $target_path = $rootPath;
-    $resultArray = array("root" => $target_path);
+    $filenameTime = time();
+    $target_path = $_SERVER['DOCUMENT_ROOT'].$rootPath;
+    $resultArray = array("root" => "api.sannmizu.com".$rootPath);
     $jsonArray = array();
     foreach ($medias as $key => $value) {
         $mediaType = $value;
@@ -153,7 +167,7 @@ function saveMedia($medias, string $rootPath) {
             throw new MyException("post参数".$key."未定义", 10016);
         }
         //存入数据
-        $filename = $i.".".$mediaType;
+        $filename = $filenameTime.mt_rand(10000,99999).".".$mediaType;
         if(!file_exists($target_path.$filename)) {
             mkdir($target_path, 0777, true);
         }
@@ -162,12 +176,7 @@ function saveMedia($medias, string $rootPath) {
         fclose($file);
         array_push($jsonArray, $filename);
         $resultArray["files"][] = $filename;
-        $i++;
     }
-    //写入描述文件descript
-    $file = fopen($target_path."descript.json", "w");
-    fwrite($file, json_encode($jsonArray));
-    fclose($file);
     return json_encode($resultArray);
 }
 ?>

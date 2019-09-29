@@ -6,7 +6,9 @@ include_once 'module/Chat/ChatRestHandler.php';
 include_once 'module/Utils/MyException.php';
 include_once 'module/Utils/httpResponse.php';
 
-
+if($_SERVER['REQUEST_METHOD'] == "PUT") {
+    parse_str(file_get_contents('php://input'), $_POST);
+}
 $module = isset($_GET['module']) ? $_GET['module'] : "";
 try {
     switch ($module){

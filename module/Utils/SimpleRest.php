@@ -21,7 +21,7 @@ class SimpleRest {
     public function assert($array) {
         foreach ($array as $name => $str) {
             if($str == "") {
-                throw new MyException("缺少参数".$name, 10016);
+                throw new MyException("缺少参数".$name, 10015);
             }
         }
     }
